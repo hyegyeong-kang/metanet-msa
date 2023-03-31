@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.coffeemember.mapper.MemberMapper">
+
+    <update id="createMemberTable" parameterType="MemberVO">
+        create table member(
+            id number primary key,
+            membername varchar2(50)
+        )
+    </update>
+
+    <insert id="insertMemberData" parameterType="MemberVO">
+        insert into member values (1, 'kim')
+    </insert>
+
+    <select id="existByMemberName" parameterType="MemberVO"
+            resultType="MemberVO">
+        select * from member
+        where membername = #{memberName}
+    </select>
+</mapper>
