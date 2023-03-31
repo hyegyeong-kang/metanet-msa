@@ -1,0 +1,31 @@
+server:
+  port: 9000
+
+
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: coffee-member
+          uri: http://localhost:8081
+          predicates:
+            - Path=/coffee-member/**
+        - id: coffee-order
+          uri: http://localhost:8082
+          predicates:
+            - Path=/coffee-order/**
+        - id: coffee-status
+          uri: http://localhost:8083
+          predicates:
+            - Path=/coffee-status/**
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka   # ??? ?? ??? ????? ?
