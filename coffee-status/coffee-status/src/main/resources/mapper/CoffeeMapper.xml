@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.coffeestatus.mapper.CoffeeMapper">
+
+    <update id="createStatusTable" parameterType="CoffeeStatusVO">
+        create table coffeestatus(
+            ordernumber varchar2(50),
+            coffeename varchar2(50),
+            coffeecount number,
+            customername varchar2(50)
+        )
+    </update>
+
+    <insert id="insertCoffeeOrderStatus" parameterType="CoffeeStatusVO">
+        insert into coffeestatus
+        values (#{orderNumber}, #{coffeeName}, #{coffeeCount}, #{customerName})
+    </insert>
+
+    <select id="selectCoffeeOrderStatus" resultType="CoffeeStatusVO">
+        select * from coffeestatus
+    </select>
+</mapper>
