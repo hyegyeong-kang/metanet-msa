@@ -4,8 +4,26 @@ server:
 spring:
   application:
     name: coffee-order
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: kosa01
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+
