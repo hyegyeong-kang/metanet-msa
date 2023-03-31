@@ -4,6 +4,15 @@ server:
 spring:
   application:
     name: coffee-member
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: kosa01
+    password: 1234
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.coffeemember.vo
 
 eureka:
   client:
