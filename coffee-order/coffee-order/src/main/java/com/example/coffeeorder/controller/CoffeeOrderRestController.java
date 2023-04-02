@@ -1,6 +1,7 @@
 package com.example.coffeeorder.controller;
 
 import com.example.coffeeorder.client.OrderServiceClient;
+import com.example.coffeeorder.messagequeue.KafkaProducer;
 import com.example.coffeeorder.service.CoffeeOrderService;
 import com.example.coffeeorder.vo.CoffeeOrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class CoffeeOrderRestController {
     private CoffeeOrderService coffeeOrderService;
     @Autowired
     private OrderServiceClient orderServiceClient;
+
+    @Autowired
+    private KafkaProducer kafkaProducer;
 
     @GetMapping("/")
     public String coffeeOrder() {
@@ -35,6 +39,9 @@ public class CoffeeOrderRestController {
 
         // 커피 주문
         coffeeOrderService.coffeeOrder(vo);
+
+        // kafka send
+        kafkaProducer.send("kosa-kafka-test", vo);
 
         return new ResponseEntity<CoffeeOrderVO>(vo, HttpStatus.OK);
     }
